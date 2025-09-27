@@ -12,7 +12,7 @@ This code provides modules for **FAME model construction，the regression of Fra
 
 ## Overview of FAME model
 <p align="center">
-  <img src="Methylation_Fragmentomic/Fig/1.png" width="100%"/> 
+  <img src="Fig/1.png" width="100%"/> 
 </p>
 
 ## Table of Contents
