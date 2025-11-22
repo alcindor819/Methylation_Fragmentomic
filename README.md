@@ -1,6 +1,7 @@
+![AppVeyor](https://img.shields.io/badge/MATLAB2020a-red)
 # Methylation_Fragmentomic
 if you have any question please contact wangyunze@webmail.hzau.edu.cn and i will reply you
-![AppVeyor](https://img.shields.io/badge/MATLAB2020a-red)
+
 
 
 ## Introduction
@@ -17,11 +18,9 @@ This code provides modules for **FAME model construction，the regression of Fra
 
 ## Table of Contents
  - [Environment](#Environment)
- - [Preparation work](#Preparation)
- - [Data preprocessing](#Data_preprocessing)
- - [Identifying dispersed regions](#Identifying_dispersed_regions)
- - [Diagnostic](#Diagnostic)
- - [Citation](#Citation)
+ - [Regression work](#Regression)
+ - [red and blue](#red)
+ - [FAME](#FAME)
 
 <a name="Environment"></a>
 ## 1 Environment
@@ -86,6 +85,7 @@ mean_r2_vs_tree.xlsx
 <p align="center">
   <img src="/Fig/Fig S2_01.jpg" width="100%"/> 
 </p>
+<a name="Regression"></a>
 
 ## 3 red and blue
 This module performs unsupervised clustering on MHB (Methylation Haplotype Block) regions and identifies whether each region is fragmentation-dominant (blue) or methylation-dominant (red).
@@ -124,6 +124,7 @@ dominant_type : 17611 × 1 vector
 <p align="center">
   <img src="/Fig/Fig4_01.jpg" width="100%"/> 
 </p>
+<a name="red"></a>
 
 ## 4 FAME
 This module evaluates all cancer tasks in the HRA003209 dataset and generates the figures used in Figure 5 of the manuscript.
@@ -187,4 +188,4 @@ Sensitivity_barplot_Validation.svg
   <img src="/Fig/Fig5_01.jpg" width="100%"/> 
 </p>
 
-
+<a name="FAME"></a>
