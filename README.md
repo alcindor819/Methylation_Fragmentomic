@@ -140,5 +140,5 @@ mean_r2_vs_tree.xlsx
 
 **Fig2_regression.**
 <p align="center">
-  <img src="/Fig/FigS2_01.jpg" width="100%"/> 
+  <img src="/Fig/Fig S2_01.jpg" width="100%"/> 
 </p>
