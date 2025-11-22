@@ -101,7 +101,10 @@ Calling the main R² evaluation script:
 ```
 Fig2_FragmentomicsToMethylation_R2()
 ```
+
+
 The parameters used in this script are defined at the top of the file and can be modified by the user.
+```
 PARPOOL_SIZE = 8;                       % Number of workers for parallel computing
 DATA_PATH    = '/home/wyz/0Work2/fig2/1/data/'; 
 FEATURE_FILE = 'feature_name.mat';      % Contains 12 feature names
