@@ -91,34 +91,51 @@ After the code finishes, you'll get the mat format data for all the samples in t
 <a name="Fig2_regression"></a>
 
 
-DATA_PATH = '/home/wyz/0Work2/fig2/1/data/';
-% Folder containing feature matrices such as 2298_MM.mat, 2298_PDR.mat, etc.
+## 4 Fig2_regression
 
-FEATURE_FILE = 'feature_name.mat';
-% A .mat file containing the list of 12 feature names.
+First, move to the folder containing this script.
+```
+cd Fig2/FragmentomicsToMethylation_R2/
+```
+Calling the main R² evaluation script:
+```
+Fig2_FragmentomicsToMethylation_R2()
+```
+The parameters used in this script are defined at the top of the file and can be modified by the user.
+PARPOOL_SIZE = 8;                       % Number of workers for parallel computing
+DATA_PATH    = '/home/wyz/0Work2/fig2/1/data/'; 
+FEATURE_FILE = 'feature_name.mat';      % Contains 12 feature names
+OUTPUT_FILE  = 'mean_r2_vs_tree.xlsx';  % Output XLSX file
 
-OUTPUT_FILE = 'mean_r2_vs_tree.xlsx';
-% Output Excel file storing averaged R² across trees and features.
+METH_IDX = 1:7;                         % Methylation feature indices
+FRAG_IDX = [10, 12];                    % Selected fragmentomic features
+INPUT_IDX_ALL = [METH_IDX, FRAG_IDX];   % Total predictors used (9 features)
 
-METH_IDX = 1:7;
-% Indices of methylation features used as prediction targets.
+TREE_LIST = [5,10,50,100,500,1000,2000,5000,10000];   % Number of boosting trees
 
-FRAG_IDX = [10, 12];
-% Selected fragmentomic features (e.g., FDI, IFS).
+MIN_VALID_POINTS = 20;                  % Minimum valid bin count per sample
+MIN_STD          = 1e-4;                % Exclude near-constant predictors
+```
+What the script does
 
-INPUT_IDX_ALL = [METH_IDX, FRAG_IDX];
-% All predictors used for LSBoost regression.
+Loads all 12 fragmentomic + methylation feature matrices (2298_featureName.mat)
 
-TREE_LIST = [5 10 50 100 500 1000 2000 5000 10000];
-% Number of LSBoost learning cycles to evaluate.
+For each methylation target feature (1–7):
 
-MIN_VALID_POINTS = 20;
-% Minimum number of valid (non-NaN, non -1) bins required for fitting a model.
+Regress using LSBoost from the 9 candidate predictors
 
-MIN_STD = 1e-4;
-% Minimum variance threshold; samples with near-constant predictors are skipped.
+Skip trivial cases where the predictor and target are identical
 
-PARPOOL_SIZE = 8;
-% Number of workers for parallel computation.
+Compute R² per sample
+
+Aggregate R² across samples and tree numbers
+
+Save results to Excel
+After execution, the script produces:
+mean_r2_vs_tree.xlsx
 
 
+**Results for identifying dispersed regions.**
+<p align="center">
+  <img src="/FDI/fig/Example_tssctcf.png" width="100%"/> 
+</p>
