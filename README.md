@@ -133,16 +133,15 @@ For each cancer type, it loads prediction scores, computes model performance, an
 First, navigate to the evaluation folder.
 ```
 cd Fig5/Evaluation/
-
 ```
 
 Running the main evaluation script:
 ```
 Fig5_RunAllModels
-
-
-```The parameters used in the script are listed at the beginning.
+```
+The parameters used in the script are listed at the beginning.
 Below is a detailed explanation of each parameter and an example setting.
+
 ```
 task_list_path   = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\canname.xlsx';
 % Excel file containing the list of cancer types to evaluate.
@@ -167,6 +166,7 @@ selected_modalities = [2 8 10];
 % The modalities to compare (e.g., WPS, COV, FDI). ENS is always included.
 
 ```
+
 After running the script, you will see:
 ```
 k_ROC_XXX.svg
