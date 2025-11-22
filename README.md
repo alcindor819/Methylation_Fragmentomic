@@ -1,6 +1,6 @@
 ![AppVeyor](https://img.shields.io/badge/MATLAB2020a-red)
 # Methylation_Fragmentomic
-if you have any question please contact wangyunze@webmail.hzau.edu.cn and i will reply you
+if you have any question please contact wangyunze@webmail.hzau.edu.cn 
 
 
 
@@ -49,7 +49,7 @@ Fig2_FragmentomicsToMethylation_R2()
 The parameters used in this script are defined at the top of the file and can be modified by the user.
 ```
 PARPOOL_SIZE = 8;                       % Number of workers for parallel computing
-DATA_PATH    = '/home/wyz/0Work2/fig2/1/data/'; 
+DATA_PATH    = 'your data_path'; 
 FEATURE_FILE = 'feature_name.mat';      % Contains 12 feature names
 OUTPUT_FILE  = 'mean_r2_vs_tree.xlsx';  % Output XLSX file
 
@@ -91,7 +91,7 @@ mean_r2_vs_tree.xlsx
 This module performs unsupervised clustering on MHB (Methylation Haplotype Block) regions and identifies whether each region is fragmentation-dominant (blue) or methylation-dominant (red).
 First, navigate to the MHB clustering folder.
 ```
-cd Fig3/MHB_Clustering/
+cd Fig4/MHB_Clustering/
 ```
 
 Calling the main clustering script:
@@ -102,8 +102,8 @@ Fig3_MHB_Clustering_Fragment_vs_Methylation()
 You can adjust all parameters in the header of the script.
 Below are the parameters used inside the script, their meanings, and example settings:
 ```
-DATA_PATH   = 'D:\wyzwork\0工作2\fig2\data\';         % Folder containing feature_name.mat
-MHB_PATH    = 'D:\wyzwork\0工作2\fig3\MHB2\';          % Folder containing MHB index files
+DATA_PATH   = 'your data_path';          % Folder containing feature_name.mat
+MHB_PATH    = 'your data_path';          % Folder containing MHB index files
 FEATURE_ROOT = 'E:\下载数据\3209\';                    % Folder containing 3209_Train_feature.mat
 
 NUM_REGIONS = 17611;                                  % Total number of genomic regions
@@ -143,20 +143,20 @@ The parameters used in the script are listed at the beginning.
 Below is a detailed explanation of each parameter and an example setting.
 
 ```
-task_list_path   = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\canname.xlsx';
+task_list_path   = 'your data_path'; 
 % Excel file containing the list of cancer types to evaluate.
 
-feature_list_path = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\data_need.xlsx';
+feature_list_path = 'your data_path'; 
 % List of feature names; used for selecting modalities to visualize.
 
-roc_save_root    = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\zhexian\roc\';
+roc_save_root    = 'your data_path'; 
 % Folder where ROC curves are saved.
 
-k_data_root      = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\zhexian\1\';
-v_data_root      = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\zhexian\1\';
+k_data_root      = 'your data_path'; 
+v_data_root      = 'your data_path'; 
 % Folders containing K-fold (k3209_*.mat) and Validation (v3209_*.mat) model scores.
 
-save_fig_root    = 'D:\wyzwork\0工作2\fig4\HRA003209\ens_model\zhexian\2\';
+save_fig_root    = 'your data_path'; 
 % Folder for saving heatmaps and cumulative-positive plots.
 
 threshold = -0.75;
