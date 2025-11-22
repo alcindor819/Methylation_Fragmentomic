@@ -138,7 +138,7 @@ After execution, the script produces:
 mean_r2_vs_tree.xlsx
 
 
-**Results for identifying dispersed regions.**
+**Fig2_regression.**
 <p align="center">
-  <img src="/FDI/fig/Example_tssctcf.png" width="100%"/> 
+  <img src="/Fig/FigS2_01.jpg" width="100%"/> 
 </p>
