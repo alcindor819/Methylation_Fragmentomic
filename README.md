@@ -44,101 +44,70 @@ wget -c https://zenodo.org/record/17697714/
 
 
 
-## 2 Regression
-
-First, move to the folder containing this script.
-```
-cd Fig2/FragmentomicsToMethylation_R2/
-```
-Calling the main R² evaluation script:
-```
-Fig2_FragmentomicsToMethylation_R2()
-```
-
-
-The parameters used in this script are defined at the top of the file and can be modified by the user.
-```
-PARPOOL_SIZE = 8;                       % Number of workers for parallel computing
-DATA_PATH    = 'your data_path'; 
-FEATURE_FILE = 'feature_name.mat';      % Contains 12 feature names
-OUTPUT_FILE  = 'mean_r2_vs_tree.xlsx';  % Output XLSX file
-
-METH_IDX = 1:7;                         % Methylation feature indices
-FRAG_IDX = [10, 12];                    % Selected fragmentomic features
-INPUT_IDX_ALL = [METH_IDX, FRAG_IDX];   % Total predictors used (9 features)
-
-TREE_LIST = [5,10,50,100,500,1000,2000,5000,10000];   % Number of boosting trees
-
-MIN_VALID_POINTS = 20;                  % Minimum valid bin count per sample
-MIN_STD          = 1e-4;                % Exclude near-constant predictors
-```
-What the script does
-
-Loads all 12 fragmentomic + methylation feature matrices (2298_featureName.mat)
-
-For each methylation target feature (1–7):
-
-Regress using LSBoost from the 9 candidate predictors
-
-Skip trivial cases where the predictor and target are identical
-
-Compute R² per sample
-
-Aggregate R² across samples and tree numbers
-
-Save results to Excel
-After execution, the script produces:
-mean_r2_vs_tree.xlsx
-
-
-**Fig2_regression.**
-<p align="center">
-  <img src="/Fig/Fig S2_01.jpg" width="100%"/> 
-</p>
-<a name="Regression"></a>
-
-## 3 red and blue
-This module performs unsupervised clustering on MHB (Methylation Haplotype Block) regions and identifies whether each region is fragmentation-dominant (blue) or methylation-dominant (red).
-First, navigate to the MHB clustering folder.
-```
-cd Fig4/MHB_Clustering/
-```
-
-Calling the main clustering script:
-```
-Fig3_MHB_Clustering_Fragment_vs_Methylation()
-
-```
-You can adjust all parameters in the header of the script.
-Below are the parameters used inside the script, their meanings, and example settings:
-```
-DATA_PATH   = 'your data_path';          % Folder containing feature_name.mat
-MHB_PATH    = 'your data_path';          % Folder containing MHB index files
-FEATURE_ROOT = 'E:\下载数据\3209\';                    % Folder containing 3209_Train_feature.mat
-
-NUM_REGIONS = 17611;                                  % Total number of genomic regions
-METH_IDX = 1:7;                                        % Indices of methylation features
-FRAG_IDX = 8:12;                                       % Indices of fragmentation features
-```
-containing:
-```
-dominant_type : 17611 × 1 vector
-    1 → fragmentation-dominant (blue region)
-    2 → methylation-dominant (red region)
-```
 
 
 
 
-**Fig4_red_blue.**
-<p align="center">
-  <img src="/Fig/Fig4_01.jpg" width="100%"/> 
-</p>
-<a name="red"></a>
 
 ## 4 FAME
 This module evaluates all cancer tasks in the HRA003209 dataset and generates the figures used in Figure 5 of the manuscript.
 For each cancer type, it loads prediction scores, computes model performance, and produces ROC curves, correction heatmaps, cumulative-positive curves, and AUC/Sensitivity barplots.
+
+
+1. Load Metadata and Configuration
+
+Reads the list of 12 candidate fragmentomic/methylation-based features.
+
+Reads the seven cancer task names.
+
+Loads pre-processed training and test cohort information for 3209 samples.
+
+Defines feature indices (bj) to use for first-layer SVMs.
+2. First-Layer Modeling: Single-Modality SVMs
+
+For each selected feature:
+
+Trains a single SVM classifier in a 10-fold cross-validation setting.
+
+Applies trained models to the independent test set.
+
+Saves per-fold ROC information and prediction scores.
+
+Each first-layer SVM produces one probability score per sample.
+
+3. Second-Layer Modeling: Stacking SVM (FAME)
+
+Concatenates the first-layer SVM scores.
+
+Trains a second-layer SVM to obtain the FAME ensemble model.
+
+Computes AUC and sensitivity at 95% specificity for:
+
+Cross-validation (with 95% CI)
+
+Independent validation
+
+4. Visualization
+
+Automatically generates:
+
+ROC curves for CV and IV (one figure per cancer type)
+
+Optional bar charts:
+
+CV AUC with 95% CI
+
+CV Sensitivity@95% specificity with 95% CI
+
+IV AUC (no CI)
+
+IV Sensitivity@95% specificity
+
+All figures are saved under:
+
+
+
+
 
 First, navigate to the evaluation folder.
 ```
