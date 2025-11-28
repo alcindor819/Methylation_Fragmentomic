@@ -18,8 +18,7 @@ This code provides modules for **FAME model construction，the regression of Fra
 
 ## Table of Contents
  - [Environment](#Environment)
- - [Regression work](#Regression)
- - [red and blue](#red)
+ - [Data_download](#Data)
  - [FAME](#FAME)
 
 <a name="Environment"></a>
@@ -31,7 +30,18 @@ Then, get the code.
 git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git
 ```
 
-<a name="Preparation"></a>
+<a name="Environment"></a>
+## 2 Data_download
+Download all files
+```
+wget -c https://zenodo.org/record/17697714/
+```
+<p align="center">
+  <img src="Fig/1.png" width="100%"/> 
+</p>
+
+<a name="Data"></a>
+
 
 
 ## 2 Regression
