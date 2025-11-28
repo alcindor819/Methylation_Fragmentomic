@@ -37,7 +37,7 @@ Download all files
 wget -c https://zenodo.org/record/17697714/
 ```
 <p align="center">
-  <img src="Fig/1.png" width="100%"/> 
+  <img src="Fig/data.png" width="100%"/> 
 </p>
 
 <a name="Data"></a>
