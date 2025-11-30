@@ -111,38 +111,58 @@ All figures are saved under:
 
 First, navigate to the evaluation folder.
 ```
-cd Fig5/Evaluation/
+cd FAME/
 ```
 
 Running the main evaluation script:
 ```
-Fig5_RunAllModels
+Main_Stacking_3209
 ```
 The parameters used in the script are listed at the beginning.
 Below is a detailed explanation of each parameter and an example setting.
 
 ```
-task_list_path   = 'your data_path'; 
-% Excel file containing the list of cancer types to evaluate.
+%% ======================= Paths and Basic Settings =======================
+% Root directory for your code and metadata files.
+% (Users should modify this path according to their local environment.)
+code_root = '/path/to/your/code_directory/';
 
-feature_list_path = 'your data_path'; 
-% List of feature names; used for selecting modalities to visualize.
+% Excel file listing all feature names (first column contains 12 features).
+% Place the file "data_need.xlsx" under code_root or update the path below.
+feature_list_file = fullfile(code_root, 'data_need.xlsx');
 
-roc_save_root    = 'your data_path'; 
-% Folder where ROC curves are saved.
+% Excel file listing all cancer task names (first column contains 7 cancers).
+% Place "canname.xlsx" under code_root or update the path below.
+cancer_list_file  = fullfile(code_root, 'canname.xlsx');
 
-k_data_root      = 'your data_path'; 
-v_data_root      = 'your data_path'; 
-% Folders containing K-fold (k3209_*.mat) and Validation (v3209_*.mat) model scores.
 
-save_fig_root    = 'your data_path'; 
-% Folder for saving heatmaps and cumulative-positive plots.
+%% ======================= Data Input Paths ===============================
+% Root directory for all dataset files.
+% Users should point this to the directory that contains:
+%   - 3209Train_info.mat
+%   - 3209Test_info.mat
+%   - Feature matrices such as 3209_Train_MM.mat, 3209_Test_MM.mat, etc.
+data_root = '/path/to/your/data_directory/';
 
-threshold = -0.75;
-% Threshold used in the correction-heatmap.
+% Metadata files containing training and testing sample information.
+train_info_file = fullfile(data_root, '3209Train_info.mat');
+test_info_file  = fullfile(data_root, '3209Test_info.mat');
 
-selected_modalities = [2 8 10];
-% The modalities to compare (e.g., WPS, COV, FDI). ENS is always included.
+
+%% ======================= Data Prefix Settings ===========================
+% Prefix used for constructing data filenames.
+% For example, if your data files follow the format:
+%   3209_Train_*.mat
+%   3209_Test_*.mat
+% then set:
+data_prefix = '3209';
+
+
+%% ======================= Feature Selection ==============================
+% Indices of selected features (from the 12 available features).
+% Users can modify this based on their own experiment design.
+bj = [2 6 8 12];   % example selection
+
 
 ```
 
@@ -150,12 +170,6 @@ After running the script, you will see:
 ```
 k_ROC_XXX.svg
 v_ROC_XXX.svg
-k_error_heatmap_XXX.svg
-v_error_heatmap_XXX.svg
-AUC_barplot_CV.svg
-AUC_barplot_Validation.svg
-Sensitivity_barplot_CV.svg
-Sensitivity_barplot_Validation.svg
 
 ```
 
@@ -164,7 +178,9 @@ Sensitivity_barplot_Validation.svg
 
 **Fig5_FAME.**
 <p align="center">
-  <img src="/Fig/Fig5_01.jpg" width="100%"/> 
+  <img src="/FAME/ROC_CV_ESCA.png" width="100%"/> 
 </p>
-
+<p align="center">
+  <img src="/FAME/ROC_IV_STAD.png" width="100%"/> 
+</p>
 <a name="FAME"></a>
