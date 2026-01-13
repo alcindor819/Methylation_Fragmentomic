@@ -25,7 +25,7 @@ This code provides modules for **FAME model construction，the regression of Fra
 First, Please install MATLAB
 Then, get the code.
 ```
-git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git](https://github.com/alcindor819/Methylation_Fragmentomic.git
+git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git
 ```
 
 <a name="Environment"></a>
