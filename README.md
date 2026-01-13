@@ -10,17 +10,15 @@ This code provides modules for **FAME model construction，the regression of Fra
 
 
 
-## Overview of FAME model
-<p align="center">
-  <img src="Fig/1.png" width="100%"/> 
-</p>
 
 
 ## Table of Contents
  - [Environment](#Environment)
  - [Data_download](#Data)
+ - [Regression model](#RM)
+ - [MHB clustering](#MC)
  - [FAME](#FAME)
-
+ - 
 <a name="Environment"></a>
 ## 1 Environment
 
@@ -69,6 +67,7 @@ Columns: input feature names
 
 Values: mean residual correlations (lower values indicate stronger explanatory power)
 
+<a name="RM"></a>
 
 ## 4 MHB clustering
 
@@ -100,7 +99,7 @@ Input: mean methylation features only
 Replicates: 10 (fixed random seed for reproducibility)
 ```
 
-
+<a name="MC"></a>
 
 
 ## 5 FAME
