@@ -27,7 +27,7 @@ This code provides modules for **FAME model construction，the regression of Fra
 First, Please install MATLAB
 Then, get the code.
 ```
-git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git
+git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git](https://github.com/alcindor819/Methylation_Fragmentomic.git
 ```
 
 <a name="Environment"></a>
@@ -36,15 +36,36 @@ Download all files
 ```
 wget -c https://zenodo.org/record/17697714/
 ```
-<p align="center">
-  <img src="Fig/data.png" width="100%"/> 
-</p>
+
 
 <a name="Data"></a>
 
+## 3 Regression model
+Method: LSBoost (least-squares gradient boosting)
 
+```
+Base learner: decision trees with MaxNumSplits = 10
+Learning rate: 0.1
+Number of trees:TREE_LIST = [5, 10, 50, 100, 500, 1000, 2000, 5000, 10000];
+```
 
+```
+Feature configuration
+Total features: 12
+Input features: 1–12
+Fragmentomic targets: 8–12
+Self-regression (predicting a feature by itself) is explicitly excluded.
+MIN_VALID_POINTS = 20;
+MIN_STD = 1e-4;
+PARPOOL_SIZE = 24;
 
+```
+Output
+
+File: mean_corr_vs_tree_FX.xlsx
+Rows: number of boosting trees
+Columns: input feature names
+Values: mean residual correlations (lower values indicate stronger explanatory power)
 
 
 
@@ -176,11 +197,4 @@ v_ROC_XXX.svg
 
 
 
-**Fig5_FAME.**
-<p align="center">
-  <img src="/FAME/ROC_CV_ESCA.png" width="100%"/> 
-</p>
-<p align="center">
-  <img src="/FAME/ROC_IV_STAD.png" width="100%"/> 
-</p>
-<a name="FAME"></a>
+
