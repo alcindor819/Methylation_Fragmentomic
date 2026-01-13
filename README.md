@@ -58,7 +58,6 @@ Self-regression (predicting a feature by itself) is explicitly excluded.
 MIN_VALID_POINTS = 20;
 MIN_STD = 1e-4;
 PARPOOL_SIZE = 24;
-
 ```
 Output
 
@@ -71,9 +70,40 @@ Columns: input feature names
 Values: mean residual correlations (lower values indicate stronger explanatory power)
 
 
+## 4 MHB clustering
+
+This script classifies MHB (Methylation Haplotype Block) regions into two biologically interpretable classes based on their dominant source of variability.
+
+First, unsupervised K-means clustering (K = 2) is performed using methylation features only, ensuring that cluster formation is driven by epigenetic patterns rather than fragmentation signals.
+Next, each cluster is assigned a semantic label by comparing the relative variability of fragmentation features versus methylation features within the cluster.
+
+Regions with higher normalized variability in fragmentomic features are labeled as fragmentation-dominant (blue regions), whereas regions dominated by methylation variability are labeled as methylation-dominant (red regions).
+
+The resulting red–blue partition provides a compact and interpretable stratification of MHB regions into regulatory-open versus structurally constrained genomic domains.
+
+Input features
+```
+Methylation features: indices 1–7
+Fragmentomic features: indices 8–12
+Total regions analyzed: 17,611 MHBs
+```
+Feature aggregation
+```
+For each MHB region, feature values are averaged across training samples
+Invalid values (-1 or NaN) are excluded
+```
+Clustering
+```
+Method: K-means
+Number of clusters: K = 2
+Input: mean methylation features only
+Replicates: 10 (fixed random seed for reproducibility)
+```
 
 
-## 4 FAME
+
+
+## 5 FAME
 This module evaluates all cancer tasks in the HRA003209 dataset and generates the figures used in Figure 5 of the manuscript.
 For each cancer type, it loads prediction scores, computes model performance, and produces ROC curves, correction heatmaps, cumulative-positive curves, and AUC/Sensitivity barplots.
 
