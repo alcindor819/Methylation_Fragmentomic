@@ -18,7 +18,7 @@ This code provides modules for **FAME model construction，the regression of Fra
  - [Regression model](#RM)
  - [MHB clustering](#MC)
  - [FAME](#FAME)
- - 
+   
 <a name="Environment"></a>
 ## 1 Environment
 
