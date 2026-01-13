@@ -63,8 +63,11 @@ PARPOOL_SIZE = 24;
 Output
 
 File: mean_corr_vs_tree_FX.xlsx
+
 Rows: number of boosting trees
+
 Columns: input feature names
+
 Values: mean residual correlations (lower values indicate stronger explanatory power)
 
 
