@@ -5,13 +5,13 @@ if you have any question please contact wangyunze@webmail.hzau.edu.cn
 
 
 ## Introduction
-This repository contains the source code, and package for the paper "Cancer Diagnosis Based on Methylation and Fragmentomic Information from cfDNA Methylation Haplotype Blocks".
-This code provides modules for **FAME model construction，the regression of Fragmentomic and Methylation**, as well as modules for **K-fold cross-validation, independent validation and tissue-of-origin inference for cancer classification**.
+This repository contains the source code for the paper "Decoding the coupled epigenetic-fragmentomic principles of circulating DNA for robust and interpretable cancer diagnosis".
+This code provides modules for **FAME model construction，the regression of Fragmentomic and Methylation**.
 
 
-## Overview of FDI model
+## Overview of this work
 <p align="center">
-  <img src="/Fig/work_flow3.png" width="100%"/> 
+  <img src="/Fig/work_flow2.jpg" width="100%"/> 
 </p>
 
 
@@ -28,13 +28,15 @@ This code provides modules for **FAME model construction，the regression of Fra
 First, Please install MATLAB
 Then, get the code.
 ```
-git clone --recursive https://github.com/alcindor819/FDI_code_MATLAB.git
+git clone --recursive https://github.com/alcindor819/Methylation_Fragmentomic.git
 ```
 
 <a name="Environment"></a>
 ## 2 Data_download
 Download all files
 ```
+mkdir data_download
+cd data_download
 wget -c https://zenodo.org/record/17697714/
 ```
 
