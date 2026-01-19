@@ -11,7 +11,7 @@ This code provides modules for **FAME model construction，the regression of Fra
 
 ## Overview of FDI model
 <p align="center">
-  <img src="/Fig/work_flow2.png" width="100%"/> 
+  <img src="/Fig/work_flow3.png" width="100%"/> 
 </p>
 
 
