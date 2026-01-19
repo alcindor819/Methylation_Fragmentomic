@@ -9,7 +9,10 @@ This repository contains the source code, and package for the paper "Cancer Diag
 This code provides modules for **FAME model construction，the regression of Fragmentomic and Methylation**, as well as modules for **K-fold cross-validation, independent validation and tissue-of-origin inference for cancer classification**.
 
 
-
+## Overview of FDI model
+<p align="center">
+  <img src="/Fig/work_flow2.png" width="100%"/> 
+</p>
 
 
 ## Table of Contents
