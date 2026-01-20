@@ -146,16 +146,13 @@ Below is a detailed explanation of each parameter and an example setting.
 code_root = '/path/to/your/code_directory/';
 
 % Excel file listing all feature names (first column contains 12 features).
-% Place the file "data_need.xlsx" under code_root or update the path below.
 feature_list_file = fullfile(code_root, 'data_need.xlsx');
 
 % Excel file listing all cancer task names (first column contains 7 cancers).
-% Place "canname.xlsx" under code_root or update the path below.
 cancer_list_file  = fullfile(code_root, 'canname.xlsx');
 
 %% ======================= Data Input Paths ===============================
 % Root directory for all dataset files.
-% Users should point this to the directory that contains:
 % Feature matrices such as 3209_Train_MM.mat, 3209_Test_MM.mat, etc.
 data_root = '/path/to/your/data_directory/';
 
@@ -165,12 +162,10 @@ test_info_file  = fullfile(data_root, '3209Test_info.mat');
 
 %% ======================= Data Prefix Settings ===========================
 % Prefix used for constructing data filenames.
-% For example, if your data files follow the format:
 data_prefix = '3209';
 
 %% ======================= Feature Selection ==============================
 % Indices of selected features (from the 12 available features).
-% Users can modify this based on their own experiment design.
 bj = [2 6 8 12];   % feature selection,PDR, MBS, WPS, EDM
 ```
 
