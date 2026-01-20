@@ -75,31 +75,30 @@ File: mean_corr_vs_tree_FX.xlsx(Rows: number of boosting trees, Columns: input f
 ## 4 MHB clustering
 
 This script classifies MHB (Methylation Haplotype Block) regions into two biologically interpretable classes based on their dominant source of variability.
-
 First, unsupervised K-means clustering (K = 2) is performed using methylation features only, ensuring that cluster formation is driven by epigenetic patterns rather than fragmentation signals.
 Next, each cluster is assigned a semantic label by comparing the relative variability of fragmentation features versus methylation features within the cluster.
-
 Regions with higher normalized variability in fragmentomic features are labeled as fragmentation-dominant (blue regions), whereas regions dominated by methylation variability are labeled as methylation-dominant (red regions).
-
 The resulting red–blue partition provides a compact and interpretable stratification of MHB regions into regulatory-open versus structurally constrained genomic domains.
 
-Input features
+
+First, cd to the path.
 ```
-Methylation features: indices 1–7
-Fragmentomic features: indices 8–12
-Total regions analyzed: 17,611 MHBs
+cd Methylation_Fragmentomic/MHB clustering/
 ```
-Feature aggregation
+Calling the **Fig4_MHB_Clustering_FragmentDominance.m** .
 ```
-For each MHB region, feature values are averaged across training samples
-Invalid values (-1 or NaN) are excluded
+DATA_PATH = 'data_download';
+MHB_PATH  = 'data_download';
+FEATURE_ROOT = 'data_download';
+
+NUM_REGIONS = 115759;
+METH_IDX = 1:7;
+FRAG_IDX = 8:12;
 ```
-Clustering
+
 ```
-Method: K-means
-Number of clusters: K = 2
-Input: mean methylation features only
-Replicates: 10 (fixed random seed for reproducibility)
+Output:
+File: region_cluster_class.mat(the dominant_type is a 115759*1 double, the 1 or 2 is the region's class))
 ```
 
 <a name="MC"></a>
