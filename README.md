@@ -1,6 +1,6 @@
 ![AppVeyor](https://img.shields.io/badge/MATLAB2020a-red)
 # Methylation_Fragmentomic
-if you have any question please contact wangyunze@webmail.hzau.edu.cn 
+If you have any question please contact wangyunze@webmail.hzau.edu.cn 
 
 
 
