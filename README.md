@@ -156,9 +156,7 @@ cancer_list_file  = fullfile(code_root, 'canname.xlsx');
 %% ======================= Data Input Paths ===============================
 % Root directory for all dataset files.
 % Users should point this to the directory that contains:
-%   - 3209Train_info.mat
-%   - 3209Test_info.mat
-%   - Feature matrices such as 3209_Train_MM.mat, 3209_Test_MM.mat, etc.
+% Feature matrices such as 3209_Train_MM.mat, 3209_Test_MM.mat, etc.
 data_root = '/path/to/your/data_directory/';
 
 % Metadata files containing training and testing sample information.
@@ -168,15 +166,12 @@ test_info_file  = fullfile(data_root, '3209Test_info.mat');
 %% ======================= Data Prefix Settings ===========================
 % Prefix used for constructing data filenames.
 % For example, if your data files follow the format:
-%   3209_Train_*.mat
-%   3209_Test_*.mat
-% then set:
 data_prefix = '3209';
 
 %% ======================= Feature Selection ==============================
 % Indices of selected features (from the 12 available features).
 % Users can modify this based on their own experiment design.
-bj = [2 6 8 12];   % feature selection
+bj = [2 6 8 12];   % feature selection,PDR, MBS, WPS, EDM
 ```
 
 After running the script, you will see:
