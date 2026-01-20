@@ -45,32 +45,30 @@ wget -c https://zenodo.org/record/17697714/
 
 ## 3 Regression model
 Method: LSBoost (least-squares gradient boosting)
+First, cd to the path.
+```
+cd Methylation_Fragmentomic/Regression model/
+```
+Calling the **Fig2_CrossRegression_Fragmentomics_Methylation.m** .
+```
+PARPOOL_SIZE = 8;                           % Number of workers
+DATA_PATH    = 'data_download';
+FEATURE_FILE = 'feature_name.mat';          % Contains feature{1..12}
+OUTPUT_FILE  = 'mean_corr_vs_tree.xlsx';
+METH_IDX = 1:7;                             % Seven methylation features
+FRAG_IDX = [10, 12];                        % Selected fragmentomic features
+INPUT_IDX_ALL = [METH_IDX, FRAG_IDX];       % 9 predictors total
+TREE_LIST = [5, 10, 50, 100, 500, 1000,... 
+             2000, 5000, 10000];            % # of trees to evaluate
+MIN_VALID_POINTS = 20;                      % Minimum data points for regression
+MIN_STD = 1e-4;                              % Skip near-constant predictors
+```
 
 ```
-Base learner: decision trees with MaxNumSplits = 10
-Learning rate: 0.1
-Number of trees:TREE_LIST = [5, 10, 50, 100, 500, 1000, 2000, 5000, 10000];
+Output:
+File: mean_corr_vs_tree_FX.xlsx(Rows: number of boosting trees, Columns: input feature names,Values: mean residual correlations (lower values indicate stronger explanatory power))
 ```
 
-```
-Feature configuration
-Total features: 12
-Input features: 1–12
-Fragmentomic targets: 8–12
-Self-regression (predicting a feature by itself) is explicitly excluded.
-MIN_VALID_POINTS = 20;
-MIN_STD = 1e-4;
-PARPOOL_SIZE = 24;
-```
-Output
-
-File: mean_corr_vs_tree_FX.xlsx
-
-Rows: number of boosting trees
-
-Columns: input feature names
-
-Values: mean residual correlations (lower values indicate stronger explanatory power)
 
 <a name="RM"></a>
 
