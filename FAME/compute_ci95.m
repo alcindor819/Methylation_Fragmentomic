@@ -1,4 +1,4 @@
-function stats = g95(x)
+function stats = compute_ci95(x)
 % G95
 %   Compute mean and 95% confidence interval for a vector x
 %   stats = [lower; mean; upper]
@@ -10,3 +10,4 @@ function stats = g95(x)
 
     stats = [m - ci; m; m + ci];
 end
+
