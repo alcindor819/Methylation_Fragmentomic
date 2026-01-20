@@ -110,57 +110,20 @@ For each cancer type, it loads prediction scores, computes model performance, an
 
 
 1. Load Metadata and Configuration
-
 Reads the list of 12 candidate fragmentomic/methylation-based features.
-
 Reads the seven cancer task names.
-
-Loads pre-processed training and test cohort information for 3209 samples.
-
-Defines feature indices (bj) to use for first-layer SVMs.
 2. First-Layer Modeling: Single-Modality SVMs
-
-For each selected feature:
-
-Trains a single SVM classifier in a 10-fold cross-validation setting.
-
+For each selected feature:Trains a single SVM classifier in a 10-fold cross-validation setting.
 Applies trained models to the independent test set.
-
 Saves per-fold ROC information and prediction scores.
-
 Each first-layer SVM produces one probability score per sample.
-
 3. Second-Layer Modeling: Stacking SVM (FAME)
-
 Concatenates the first-layer SVM scores.
-
 Trains a second-layer SVM to obtain the FAME ensemble model.
-
 Computes AUC and sensitivity at 95% specificity for:
-
 Cross-validation (with 95% CI)
-
 Independent validation
-
-4. Visualization
-
-Automatically generates:
-
-ROC curves for CV and IV (one figure per cancer type)
-
-Optional bar charts:
-
-CV AUC with 95% CI
-
-CV Sensitivity@95% specificity with 95% CI
-
-IV AUC (no CI)
-
-IV Sensitivity@95% specificity
-
-All figures are saved under:
-
-
+4. Visualization,Automatically generates: ROC curves for CV and IV (one figure per cancer type), Optional bar charts:CV AUC with 95% CI, CV Sensitivity@95% specificity with 95% CI, IV AUC (no CI), IV Sensitivity@95% specificity.
 
 
 
@@ -190,7 +153,6 @@ feature_list_file = fullfile(code_root, 'data_need.xlsx');
 % Place "canname.xlsx" under code_root or update the path below.
 cancer_list_file  = fullfile(code_root, 'canname.xlsx');
 
-
 %% ======================= Data Input Paths ===============================
 % Root directory for all dataset files.
 % Users should point this to the directory that contains:
@@ -203,7 +165,6 @@ data_root = '/path/to/your/data_directory/';
 train_info_file = fullfile(data_root, '3209Train_info.mat');
 test_info_file  = fullfile(data_root, '3209Test_info.mat');
 
-
 %% ======================= Data Prefix Settings ===========================
 % Prefix used for constructing data filenames.
 % For example, if your data files follow the format:
@@ -212,20 +173,16 @@ test_info_file  = fullfile(data_root, '3209Test_info.mat');
 % then set:
 data_prefix = '3209';
 
-
 %% ======================= Feature Selection ==============================
 % Indices of selected features (from the 12 available features).
 % Users can modify this based on their own experiment design.
-bj = [2 6 8 12];   % example selection
-
-
+bj = [2 6 8 12];   % feature selection
 ```
 
 After running the script, you will see:
 ```
 k_ROC_XXX.svg
 v_ROC_XXX.svg
-
 ```
 
 
