@@ -1,0 +1,3 @@
+task	model	split	n	n_cancer	auc	average_precision	sens_at_95spec	auc_definition
+BRCA	fame	test	165	20	0.9396551724137931	0.8468622047080009	0.75	pooled_sample_scores
+BRCA	fame-gw	test	165	20	0.9732758620689655	0.9203856107660455	0.85	pooled_sample_scores

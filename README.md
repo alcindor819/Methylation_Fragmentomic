@@ -1,181 +1,143 @@
-![AppVeyor](https://img.shields.io/badge/MATLAB2020a-red)
-# Methylation_Fragmentomic
-If you have any question please contact wangyunze@webmail.hzau.edu.cn 
+# FAME and FAME-GW
 
+Binary cancer classification from precomputed cfDNA methylation and fragmentomic features.
 
+[中文说明](README.zh-CN.md) · [Data format](docs/DATA_FORMAT.md) · [New samples](docs/NEW_SAMPLES.md) · [Reproducibility](docs/REPRODUCIBILITY.md)
 
-## Introduction
-This repository contains the source code for the paper "Decoding the coupled epigenetic-fragmentomic principles of circulating DNA for robust and interpretable cancer diagnosis".
-This code provides modules for **FAME model construction，the regression of Fragmentomic and Methylation**.
+This repository provides a Python workflow for **FAME** and **FAME-GW** on the HRA003209 dataset. It starts from feature matrices and supports cancer-versus-healthy classification, cross-validation, independent validation, and ROC plots. It does not require raw sequencing reads and does not implement FAME-multi.
 
+| Model | Input groups | Integration |
+| --- | --- | --- |
+| FAME | PDR, MBS, WPS, EDM | One linear SVM per group, followed by a linear SVM |
+| FAME-GW | PDR, MBS, WPS, EDM, GWM, MFR, CAFF, EM | One linear SVM per group, followed by a random forest |
 
-## Overview of this work
-<p align="center">
-  <img src="/Fig/work_flow2.jpg" width="100%"/> 
-</p>
+## 1. Install
 
+Download or clone this repository, open a terminal in its root directory, and run:
 
-## Table of Contents
- - [Environment](#Environment)
- - [Data_download](#Data)
- - [Regression model](#RM)
- - [MHB clustering](#MC)
- - [FAME](#FAME)
-   
-<a name="Environment"></a>
-## 1 Environment
-
-First, Please install MATLAB
-Then, get the code.
-```
-git clone --recursive https://github.com/alcindor819/Methylation_Fragmentomic.git
+```bash
+conda env create -f environment.yml
+conda activate fame
 ```
 
-<a name="Environment"></a>
-## 2 Data_download
-Download all files
-```
-mkdir data_download
-cd data_download
-wget -c https://zenodo.org/record/17697714/
-```
+The environment file installs Python and the required packages, including this project. Installation downloads dependencies and requires internet access. Run the commands below from the repository root. No MATLAB installation is required.
 
+If you already have Python 3.9–3.12, you can use a virtual environment instead:
 
-<a name="Data"></a>
-
-## 3 Regression model
-Method: LSBoost (least-squares gradient boosting)
-First, cd to the path.
-```
-cd Methylation_Fragmentomic/Regression model/
-```
-Calling the **Fig2_CrossRegression_Fragmentomics_Methylation.m** .
-```
-PARPOOL_SIZE = 8;                           % Number of workers
-DATA_PATH    = 'data_download';
-FEATURE_FILE = 'feature_name.mat';          % Contains feature{1..12}
-OUTPUT_FILE  = 'mean_corr_vs_tree.xlsx';
-METH_IDX = 1:7;                             % Seven methylation features
-FRAG_IDX = [10, 12];                        % Selected fragmentomic features
-INPUT_IDX_ALL = [METH_IDX, FRAG_IDX];       % 9 predictors total
-TREE_LIST = [5, 10, 50, 100, 500, 1000,... 
-             2000, 5000, 10000];            % # of trees to evaluate
-MIN_VALID_POINTS = 20;                      % Minimum data points for regression
-MIN_STD = 1e-4;                              % Skip near-constant predictors
+```bash
+python -m venv .venv
+# Linux / macOS:
+source .venv/bin/activate
+# Windows PowerShell, use instead:
+# .venv\Scripts\Activate.ps1
+python -m pip install -e .
 ```
 
-```
-Output:
-File: mean_corr_vs_tree_FX.xlsx(Rows: number of boosting trees, Columns: input feature names,Values: mean residual correlations (lower values indicate stronger explanatory power))
-```
+A clean Python 3.12 virtual environment has been verified to install this project with its pinned dependencies.
 
+## 2. Try the included ROC example
 
-<a name="RM"></a>
-
-## 4 MHB clustering
-
-This script cluster MHB (Methylation Haplotype Block) regions into two biologically interpretable classes based on their dominant source of variability.
-First, unsupervised K-means clustering (K = 2) is performed using methylation features only, ensuring that cluster formation is driven by epigenetic patterns rather than fragmentation signals.
-Next, each cluster is assigned a semantic label by comparing the relative variability of fragmentation features versus methylation features within the cluster.
-Regions with higher normalized variability in fragmentomic features are labeled as fragmentation-dominant (blue regions), whereas regions dominated by methylation variability are labeled as methylation-dominant (red regions).
-The resulting red–blue partition provides a compact and interpretable stratification of MHB regions into regulatory-open versus structurally constrained genomic domains.
-
-
-First, cd to the path.
-```
-cd Methylation_Fragmentomic/MHB clustering/
-```
-Calling the **Fig4_MHB_Clustering_FragmentDominance.m** .
-```
-DATA_PATH = 'data_download';
-MHB_PATH  = 'data_download';
-FEATURE_ROOT = 'data_download';
-
-NUM_REGIONS = 115759;
-METH_IDX = 1:7;
-FRAG_IDX = 8:12;
+```bash
+python -m fame demo --outdir results/demo
 ```
 
-```
-Output:
-File: region_cluster_class.mat(the dominant_type is a 115759*1 double, the 1 or 2 is the region's class))
-```
+This command uses the included reference prediction scores to produce seven ROC figures, each with cross-validation and independent-validation panels comparing both models, plus `metrics.tsv`. **It does not train models or require the full feature dataset.** It is the quickest way to check installation and inspect the expected outputs.
 
-<a name="MC"></a>
+Outputs are written as PNG and editable SVG files, for example `results/demo/BRCA_ROC.png` and `results/demo/BRCA_ROC.svg`. Repeated runs require a new or empty output directory, such as `--outdir results/demo2`.
 
+## 3. Prepare the feature dataset
 
-## 5 FAME
-This module evaluates all cancer tasks in the HRA003209 dataset and generates the figures used in Figure 5 of the manuscript.
-For each cancer type, it loads prediction scores, computes model performance, and produces ROC curves, correction heatmaps, cumulative-positive curves, and AUC/Sensitivity barplots.
+The full feature dataset is distributed separately from the code. The data ZIP contains a top-level `hra003209/` directory: extract it into this project's `data/` directory. The resulting path to the manifest should be `data/hra003209/manifest.json`. Then run:
 
-
-1. Load Metadata and Configuration
-Reads the list of 12 candidate fragmentomic/methylation-based features.
-Reads the seven cancer task names.
-2. First-Layer Modeling: Single-Modality SVMs
-For each selected feature:Trains a single SVM classifier in a 10-fold cross-validation setting.
-Applies trained models to the independent test set.
-Saves per-fold ROC information and prediction scores.
-Each first-layer SVM produces one probability score per sample.
-3. Second-Layer Modeling: Stacking SVM (FAME)
-Concatenates the first-layer SVM scores.
-Trains a second-layer SVM to obtain the FAME ensemble model.
-Computes AUC and sensitivity at 95% specificity for:
-Cross-validation (with 95% CI)
-Independent validation
-4. Visualization,Automatically generates: ROC curves for CV and IV (one figure per cancer type), Optional bar charts:CV AUC with 95% CI, CV Sensitivity@95% specificity with 95% CI, IV AUC (no CI), IV Sensitivity@95% specificity.
-
-
-
-First, navigate to the evaluation folder.
-```
-cd FAME/
+```bash
+python -m fame validate --data data/hra003209 --checksums
 ```
 
-Running the main evaluation script:
-```
-Main_Stacking_3209
-```
-The parameters used in the script are listed at the beginning.
-Below is a detailed explanation of each parameter and an example setting.
+The dataset contains **894 training samples and 383 independent validation samples**. Each feature file preserves sample identifiers and feature order. See [Data format](docs/DATA_FORMAT.md) for the complete file layout and input requirements.
 
-```
-%% ======================= Paths and Basic Settings =======================
-% Root directory for your code and metadata files.
-% (Users should modify this path according to their local environment.)
-code_root = '/path/to/your/code_directory/';
+| Feature group | Features per sample |
+| --- | ---: |
+| PDR | 115,759 |
+| MBS | 115,759 |
+| WPS | 115,759 |
+| EDM | 5,632 |
+| GWM | 2,897 |
+| MFR | 1,846 |
+| CAFF | 39 |
+| EM | 256 |
 
-% Excel file listing all feature names (first column contains 12 features).
-feature_list_file = fullfile(code_root, 'data_need.xlsx');
+EDM contains 256 features for each of 22 autosomes. The provided matrix retains its original column order. A verified mapping from every column to its chromosome and end motif is not yet available; column identifiers must not be interpreted as verified biological annotations.
 
-% Excel file listing all cancer task names (first column contains 7 cancers).
-cancer_list_file  = fullfile(code_root, 'canname.xlsx');
+**Data availability:** the complete feature package has been prepared and all eight exported matrices have passed exact read-back checks. The compressed NPZ files total 954,585,038 bytes; the complete directory including metadata is approximately 959 MB. The package awaits public release, and a public download link and Zenodo DOI have not yet been assigned. If you have the package from the authors, place it in the directory above. The included ROC example works without it.
 
-%% ======================= Data Input Paths ===============================
-% Root directory for all dataset files.
-% Feature matrices such as 3209_Train_MM.mat, 3209_Test_MM.mat, etc.
-data_root = '/path/to/your/data_directory/';
+## 4. Train and evaluate
 
-% Metadata files containing training and testing sample information.
-train_info_file = fullfile(data_root, '3209Train_info.mat');
-test_info_file  = fullfile(data_root, '3209Test_info.mat');
+Start with one cancer type and independent validation:
 
-%% ======================= Data Prefix Settings ===========================
-% Prefix used for constructing data filenames.
-data_prefix = '3209';
-
-%% ======================= Feature Selection ==============================
-% Indices of selected features (from the 12 available features).
-bj = [2 6 8 12];   % feature selection,PDR, MBS, WPS, EDM
+```bash
+python -m fame run \
+  --data data/hra003209 \
+  --task BRCA \
+  --model both \
+  --evaluation test \
+  --outdir results/BRCA \
+  --jobs 2
 ```
 
-After running the script, you will see:
+`test` uses the fixed training cohort to fit the models and evaluates them on the independent validation cohort. Within the training cohort, out-of-fold base-model scores are used to train the second-layer model.
+
+| Option | Choices | Meaning |
+| --- | --- | --- |
+| `--task` | `BRCA`, `COREAD`, `ESCA`, `LIHC`, `NSCLC`, `PACA`, `STAD`, `all` | Compare each selected cancer type with healthy controls |
+| `--model` | `fame`, `fame-gw`, `both` | Choose the model or run both |
+| `--evaluation` | `test`, `cv`, `both` | Independent validation, nested cross-validation, or both |
+| `--jobs` | Positive integer | Limit the requested parallel workers |
+| `--folds` | Integer, default `10` | Number of folds; changing it changes the reference evaluation design |
+| `--seed` | Integer, default `42` | Random seed |
+
+To include nested cross-validation, replace `--evaluation test` with `--evaluation both`. To run all supported cancer types, replace `--task BRCA` with `--task all`. Full nested cross-validation is substantially more expensive than the ROC example; try a single task first.
+
+The single-task command above creates:
+
+| Output | Contents |
+| --- | --- |
+| `predictions.tsv` | Sample identifiers, labels, and model scores |
+| `metrics.tsv` | AUC, average precision, and maximum sensitivity at specificity ≥95% on the evaluation ROC |
+| `roc_coordinates.tsv` | ROC coordinates and score thresholds |
+| `BRCA_ROC.png`, `BRCA_ROC.svg` | ROC figures |
+| `base_fold_metrics.tsv` | First-layer fold metrics |
+| `config.json`, `run_summary.json` | Configuration, package versions, and completion summary |
+| `fame.joblib`, `fame-gw.joblib` | Fitted models when independent validation is requested |
+
+Cross-validation also creates `fold_metrics.tsv`. With `--task all`, fitted models and individual task outputs are placed in cancer-specific subdirectories, and combined prediction and metric tables are saved in the main output directory. Use a new or empty output directory for each run.
+
+## 5. Score matching new features
+
+```bash
+python -m fame predict \
+  --model results/BRCA/fame.joblib \
+  --features input.npz \
+  --out results/new_samples/BRCA_predictions.tsv
 ```
-k_ROC_XXX.svg
-v_ROC_XXX.svg
-```
 
+`input.npz` has a different layout from the training-data files: it contains sample IDs, one matrix per required modality, and the exact feature IDs used by the fitted model. See [New samples](docs/NEW_SAMPLES.md) for the schema and a runnable file-format example. The interface requires features prepared in the same way and order as the training data; it does not make arbitrary external datasets interchangeable.
 
+Use `python -m fame --help` and `python -m fame run --help` for command details.
 
+## Validation and interpretation
 
+- Each task is a separate cancer-versus-healthy comparison. These outputs are not a multiclass diagnosis or a single pooled pan-cancer model.
+- By default, cross-validation uses 10 outer folds and 10 inner folds. Inner out-of-fold scores train the second-layer model; the outer test fold remains held out.
+- Independent validation uses the fixed 894/383 cohort split; only the relevant cancer cases and healthy controls enter each task.
+- ROC AUC computed from pooled cross-validation predictions can differ from the mean of the individual fold AUCs. Compare like with like.
+- This release organizes the existing Python implementation. It does not claim bit-for-bit equivalence to historical MATLAB results.
 
+See [Reproducibility](docs/REPRODUCIBILITY.md) for the evaluation design, reference-score checks, and release status, and [Release validation](docs/VALIDATION.md) for the checks completed on this version.
+
+## Citation and license
+
+Publication metadata, the dataset DOI, and the archived code DOI will be added when finalized. A software license must be selected by the authors before public release; this preparation version does not assign one.
+
+The manuscript's Figure 1 can be added as the project overview image when the final figure is supplied.
+
+Earlier MATLAB code and manuscript analysis scripts are retained in the [legacy version](https://github.com/alcindor819/Methylation_Fragmentomic/tree/legacy-matlab-2026-10-08).

@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "dataset": "HRA003209",
+  "status": "complete",
+  "n_train": 894,
+  "n_test": 383,
+  "modalities": {
+    "WPS": {
+      "path": "features/WPS.npz",
+      "sha256": "622bb9a274dbb5882be2844953ec0d7f6a190b803efa05a1ae4942eaf4642abe",
+      "bytes": 75163239,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          115759
+        ],
+        "X_test": [
+          383,
+          115759
+        ]
+      },
+      "sources": [
+        {
+          "name": "3209_Train_WPS.mat",
+          "sha256": "65c5daf208f28c35e0593d57e65468f848c9fc8274bea2af4727e002317ea85c",
+          "bytes": 77924319
+        },
+        {
+          "name": "3209_Test_WPS.mat",
+          "sha256": "2c748cfac346725fc2b02db33838cfb8d27cfdeea1673c34fd3aa5fcdcbfba31",
+          "bytes": 33063865
+        }
+      ]
+    },
+    "EDM": {
+      "path": "features/EDM.npz",
+      "sha256": "85d8a8e1b5dec14da5c2af448a3ed13d7c4eecbce5753d45eb5503d0dc774f32",
+      "bytes": 20045659,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          5632
+        ],
+        "X_test": [
+          383,
+          5632
+        ]
+      },
+      "sources": [
+        {
+          "name": "3209_Train_EDM.mat",
+          "sha256": "3a4f294a4eb611585c3a5c28b628d27c635570ab0efe6a3f00b1fb8fcbf90864",
+          "bytes": 37225854
+        },
+        {
+          "name": "3209_Test_EDM.mat",
+          "sha256": "dc26537b7d10e8fbef922b56e597585a6698dbbe7f5acdfda689e5dc7df6cc71",
+          "bytes": 15311050
+        }
+      ]
+    },
+    "PDR": {
+      "path": "features/PDR.npz",
+      "sha256": "1c672dafee74542c30efb44cc57b0f45af4852856468a5702db5fc8652f124ef",
+      "bytes": 378287938,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          115759
+        ],
+        "X_test": [
+          383,
+          115759
+        ]
+      },
+      "sources": [
+        {
+          "name": "3209_Train_PDR.mat",
+          "sha256": "639f9318e2473f5e7d0eb75375ca0703544d4035f36d4d4b49ea4d5780ca15ed",
+          "bytes": 557812976
+        },
+        {
+          "name": "3209_Test_PDR.mat",
+          "sha256": "a627fdc37f6a3305613146739a865928b923c1c26a08d909ef51751b2b8a9e40",
+          "bytes": 239632918
+        }
+      ]
+    },
+    "MBS": {
+      "path": "features/MBS.npz",
+      "sha256": "ecbfcfeddcc419f1bbc5a39191d6a069a328b5d86c95c6d383de5c138e8c666b",
+      "bytes": 460201833,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          115759
+        ],
+        "X_test": [
+          383,
+          115759
+        ]
+      },
+      "sources": [
+        {
+          "name": "3209_Train_MBS.mat",
+          "sha256": "29ceedf6f0a84a9ce646682fb78bf93ebf03621d4e011847948b77d235101843",
+          "bytes": 658159937
+        },
+        {
+          "name": "3209_Test_MBS.mat",
+          "sha256": "456247b48817da71fa33eb908a793e3f5649be82d32740aba57fb5f2b77693c9",
+          "bytes": 282530840
+        }
+      ]
+    },
+    "GWM": {
+      "path": "features/GWM.npz",
+      "sha256": "cd2bb7841de570648be17ffc8704a295389f15cbe25ea900d6db1e7f03c6e04e",
+      "bytes": 11510304,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          2897
+        ],
+        "X_test": [
+          383,
+          2897
+        ]
+      },
+      "sources": [
+        {
+          "name": "GWM_matrix.tsv",
+          "sha256": "cf9095daac82662a61b733f6d1c04a6add6225db3fcab6eedf3556457dcf3c67",
+          "bytes": 66761503
+        }
+      ]
+    },
+    "EM": {
+      "path": "features/EM.npz",
+      "sha256": "8ebe51572ca568772fc9b619bed39b41d48ab8de3061778be07610ff4fe1578d",
+      "bytes": 1141760,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          256
+        ],
+        "X_test": [
+          383,
+          256
+        ]
+      },
+      "sources": [
+        {
+          "name": "EM_matrix.tsv",
+          "sha256": "346628fed7996f5ec1b582a60195ded13e97fe2101ec5fc22a3d6e8b54795d24",
+          "bytes": 7016933
+        }
+      ]
+    },
+    "CAFF": {
+      "path": "features/CAFF.npz",
+      "sha256": "66448e8dc5d6e7f899b4578d32f5403c3c8754915f9040984e93dd5d313ba4df",
+      "bytes": 171856,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          39
+        ],
+        "X_test": [
+          383,
+          39
+        ]
+      },
+      "sources": [
+        {
+          "name": "CAFF_arm_raw_matrix.tsv",
+          "sha256": "1e2ac67cfa633bb97fc2e0d608d90635f174eaf182dd4abf78137d1b65865381",
+          "bytes": 606625
+        }
+      ]
+    },
+    "MFR": {
+      "path": "features/MFR.npz",
+      "sha256": "ac67fb9d759208e5a29e02a9e04043aa9733b432eb5d3c6c138508c357a8f32d",
+      "bytes": 8062449,
+      "dtype": "float32",
+      "shape": {
+        "X_train": [
+          894,
+          1846
+        ],
+        "X_test": [
+          383,
+          1846
+        ]
+      },
+      "sources": [
+        {
+          "name": "MFR_matrix.tsv",
+          "sha256": "1c49d41a496451a4d9a8adf0ef5ad0d841a9df80fdab274b6ae4dabd1ed60e7e",
+          "bytes": 30362411
+        }
+      ]
+    }
+  },
+  "authoritative_loader": {
+    "name": "run_fame_plus_3209_strict_nested_fixedRF.py",
+    "sha256": "f63cb0723bdbd5285458cb51ebbbfe973d69936782fc651015748c4efcd70c73",
+    "bytes": 29498
+  },
+  "metadata": {
+    "samples": {
+      "path": "samples.tsv",
+      "sha256": "3cba96126680ecee6af4e3d3e3598b8e6950f2d4692c7b1f4a4f62cdce094c3b",
+      "bytes": 29681,
+      "sources": [
+        {
+          "name": "3209Train_info.mat",
+          "sha256": "fb12c797f256c5bb184ce871030a7aed593c6c7153cb5d2356495fd5a02688bd",
+          "bytes": 1594448
+        },
+        {
+          "name": "3209Test_info.mat",
+          "sha256": "a3afc5ada95425b12e7efbb52a4be8a2d3fd93ff6099cffde601adf7509258f0",
+          "bytes": 695445
+        }
+      ]
+    },
+    "regions": {
+      "path": "regions.tsv",
+      "sha256": "d921c80a177e64385f7803992b68cf396ff7231fc63dd7b978f08651159e3ea0",
+      "bytes": 4251530,
+      "sources": [
+        {
+          "name": "region500bp.xlsx",
+          "sha256": "0575cc132118acfc71678f5c80aa23c331147a45764d9ca69566845a3249bdcf",
+          "bytes": 2550596
+        }
+      ]
+    },
+    "validation": {
+      "path": "validation.json",
+      "sha256": "e96bc04407dfaf33a4625c0257101417c07a1d3f7fd87c9be0f7790810fec21c",
+      "bytes": 8826
+    }
+  },
+  "coordinate_system": "Original coordinates preserved; origin and endpoint convention unverified.",
+  "missing_value_policy": "Legacy float32 loading; nonfinite values become NaN; negative values preserved.",
+  "feature_order_policy": "Exact original order; EDM has 22 x 256 columns with ordinal IDs only."
+}

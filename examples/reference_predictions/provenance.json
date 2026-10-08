@@ -1,0 +1,205 @@
+{
+  "dataset": "HRA003209",
+  "description": "Frozen final analysis scores; CV scores are strict outer-fold held-out predictions. Test scores use the fixed model, not best-by-task selection.",
+  "cv_auc": "pooled held-out predictions",
+  "seed": 42,
+  "n_splits": 10,
+  "sources": [
+    {
+      "model": "fame",
+      "task": "BRCA",
+      "split": "cv",
+      "filename": "BRCA.strict_nested_cv.predictions.tsv",
+      "sha256": "cf9c09d9ead55ac9e0a113dfaed906b39aceb4aa641b32c8b4dbe94338885124"
+    },
+    {
+      "model": "fame",
+      "task": "BRCA",
+      "split": "test",
+      "filename": "BRCA.predictions.tsv",
+      "sha256": "68e646ef4c7ebdee3e36bd4bb9bc6c9dc79def1a267cc73eb87bbae343b4f6a7"
+    },
+    {
+      "model": "fame",
+      "task": "COREAD",
+      "split": "cv",
+      "filename": "COREAD.strict_nested_cv.predictions.tsv",
+      "sha256": "c7d240267935767a3539aa72b48345c394421ecfc08d8b2f8d4d5f65236d1b07"
+    },
+    {
+      "model": "fame",
+      "task": "COREAD",
+      "split": "test",
+      "filename": "COREAD.predictions.tsv",
+      "sha256": "3e8f11af43fca63e193ab5d78d020df871d57c282996a2945fe180edf5626b14"
+    },
+    {
+      "model": "fame",
+      "task": "ESCA",
+      "split": "cv",
+      "filename": "ESCA.strict_nested_cv.predictions.tsv",
+      "sha256": "3afb720ca894949781ec213a1cb917506ffebfbd283dca50c28ccf63c3133d49"
+    },
+    {
+      "model": "fame",
+      "task": "ESCA",
+      "split": "test",
+      "filename": "ESCA.predictions.tsv",
+      "sha256": "d70fb3bc61bf63b46e595ba7906ddd5ce1631cca057e4ebbd884a373b8632401"
+    },
+    {
+      "model": "fame",
+      "task": "LIHC",
+      "split": "cv",
+      "filename": "LIHC.strict_nested_cv.predictions.tsv",
+      "sha256": "da606ad975f7a8b76fa90cc7fa6086ff9dafd4dc7a4e2641f8e7c35406350c08"
+    },
+    {
+      "model": "fame",
+      "task": "LIHC",
+      "split": "test",
+      "filename": "LIHC.predictions.tsv",
+      "sha256": "7cbe83c4cce8514ab03bcd3cfc6ce660d918754b4b00fe8ebe92927893ac7b4e"
+    },
+    {
+      "model": "fame",
+      "task": "NSCLC",
+      "split": "cv",
+      "filename": "NSCLC.strict_nested_cv.predictions.tsv",
+      "sha256": "e584f630610ac754d2dfd494338abbb495ec094eb0f5e5d7c012a6f413001393"
+    },
+    {
+      "model": "fame",
+      "task": "NSCLC",
+      "split": "test",
+      "filename": "NSCLC.predictions.tsv",
+      "sha256": "21c09253026ff4bb7e39c0977fd30a53d7af58d2ddc83167af021c2820b6e781"
+    },
+    {
+      "model": "fame",
+      "task": "PACA",
+      "split": "cv",
+      "filename": "PACA.strict_nested_cv.predictions.tsv",
+      "sha256": "d76b602d9f01305e8664d9823d589aaefc1dfb2f5b7edc524b179c1600e5012e"
+    },
+    {
+      "model": "fame",
+      "task": "PACA",
+      "split": "test",
+      "filename": "PACA.predictions.tsv",
+      "sha256": "1ae2dbb5cfff06436021a72de9311fa9626b4cb1025dac5cb06619841b068575"
+    },
+    {
+      "model": "fame",
+      "task": "STAD",
+      "split": "cv",
+      "filename": "STAD.strict_nested_cv.predictions.tsv",
+      "sha256": "2750b8ff1cd4adfd4ad102e41b09c699354cc03f907085f2b06f3019d8ce7351"
+    },
+    {
+      "model": "fame",
+      "task": "STAD",
+      "split": "test",
+      "filename": "STAD.predictions.tsv",
+      "sha256": "dd785e371e1acf00f18839b4a5d92da68067dec0dc28d4558d7c5cba678f4187"
+    },
+    {
+      "model": "fame-gw",
+      "task": "BRCA",
+      "split": "cv",
+      "filename": "BRCA.strict_nested_cv.predictions.tsv",
+      "sha256": "9f05ed0de6a130e763ebe9be50e566331f7d06533dbf627c810bf0552aff4aed"
+    },
+    {
+      "model": "fame-gw",
+      "task": "BRCA",
+      "split": "test",
+      "filename": "BRCA.predictions.tsv",
+      "sha256": "fa8e7dd309a592ed13d443ea9be0897ab7fbde4fabce2ce2c03f3c62780d9f1b"
+    },
+    {
+      "model": "fame-gw",
+      "task": "COREAD",
+      "split": "cv",
+      "filename": "COREAD.strict_nested_cv.predictions.tsv",
+      "sha256": "585c61b0c46071b127a9ecb09a07bf6a28a9ea44d45358099f142135b16c9544"
+    },
+    {
+      "model": "fame-gw",
+      "task": "COREAD",
+      "split": "test",
+      "filename": "COREAD.predictions.tsv",
+      "sha256": "876726ccce58d2dec20e3c2998e0fc1ab9791f0bf9a382fa51926b1a210a88f6"
+    },
+    {
+      "model": "fame-gw",
+      "task": "ESCA",
+      "split": "cv",
+      "filename": "ESCA.strict_nested_cv.predictions.tsv",
+      "sha256": "17310bf71933769f273268f789fcbf13adb930604666c65fb718c2e09d8fc621"
+    },
+    {
+      "model": "fame-gw",
+      "task": "ESCA",
+      "split": "test",
+      "filename": "ESCA.predictions.tsv",
+      "sha256": "31c45efbe3a62dd6f38b1109171bfd4ec3206fc1b72318e61f23bde00c752931"
+    },
+    {
+      "model": "fame-gw",
+      "task": "LIHC",
+      "split": "cv",
+      "filename": "LIHC.strict_nested_cv.predictions.tsv",
+      "sha256": "29f7ce82383cd1042a2fed260f47c5f6c85998b63a06f32aa0751293de76522a"
+    },
+    {
+      "model": "fame-gw",
+      "task": "LIHC",
+      "split": "test",
+      "filename": "LIHC.predictions.tsv",
+      "sha256": "1eaec2e190d560d7bf84d0196787c124daf3f95a82f350d9717d9e4644965b30"
+    },
+    {
+      "model": "fame-gw",
+      "task": "NSCLC",
+      "split": "cv",
+      "filename": "NSCLC.strict_nested_cv.predictions.tsv",
+      "sha256": "75816444d15e234e8b33aed9a40f4cbcf31fc166899eb75a60a49de846e5cf9a"
+    },
+    {
+      "model": "fame-gw",
+      "task": "NSCLC",
+      "split": "test",
+      "filename": "NSCLC.predictions.tsv",
+      "sha256": "90feb0e45c626e183bb8a05f979d934625e3b6a8fb6e32baa07f9366cea76c0d"
+    },
+    {
+      "model": "fame-gw",
+      "task": "PACA",
+      "split": "cv",
+      "filename": "PACA.strict_nested_cv.predictions.tsv",
+      "sha256": "acec5beeb6720ec4aaf9974151a3f14e99a4ea82c49272e63e46cf1e482c9e27"
+    },
+    {
+      "model": "fame-gw",
+      "task": "PACA",
+      "split": "test",
+      "filename": "PACA.predictions.tsv",
+      "sha256": "1fa138fa97dc0f89aa304c7806573f1ebb54a7a36efb13230dadcd10898fb814"
+    },
+    {
+      "model": "fame-gw",
+      "task": "STAD",
+      "split": "cv",
+      "filename": "STAD.strict_nested_cv.predictions.tsv",
+      "sha256": "b5a56b9ac51df012d1af32ed5ec7df60b3e9abd36254b53ad1aab3012edb58f1"
+    },
+    {
+      "model": "fame-gw",
+      "task": "STAD",
+      "split": "test",
+      "filename": "STAD.predictions.tsv",
+      "sha256": "16fb47df975b17720d075ec993ce4221cc5cbb3d8c4fa3a43a64ff512f2fda6c"
+    }
+  ]
+}

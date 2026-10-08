@@ -1,0 +1,83 @@
+{
+  "status": "complete",
+  "task": "BRCA",
+  "evaluation": "test",
+  "folds": 10,
+  "seed": 42,
+  "jobs": 8,
+  "checksums_verified": true,
+  "reference_comparison": {
+    "fame": {
+      "n_samples": 165,
+      "max_abs_score_difference": 0.0026242220977437114,
+      "auc_new": 0.9396551724137931,
+      "auc_reference": 0.9396551724137931,
+      "mean_abs_score_difference": 0.00029816210242360967,
+      "pearson_r": 0.9999999993082911,
+      "spearman_r": 1.0,
+      "max_absolute_rank_difference": 0.0
+    },
+    "fame-gw": {
+      "n_samples": 165,
+      "max_abs_score_difference": 0.0,
+      "auc_new": 0.9732758620689655,
+      "auc_reference": 0.9732758620689655,
+      "mean_abs_score_difference": 0.0,
+      "pearson_r": 1.0,
+      "spearman_r": 0.9999999999999999
+    }
+  },
+  "prediction_checks": {
+    "fame": {
+      "n_samples": 6,
+      "max_abs_score_difference": 4.440892098500626e-16
+    },
+    "fame-gw": {
+      "n_samples": 6,
+      "max_abs_score_difference": 0.0
+    }
+  },
+  "incorrect_feature_order_rejected": true,
+  "elapsed_seconds": 331.06547451019287,
+  "base_score_audit": {
+    "WPS": {
+      "old_fame_vs_old_gw_max_abs": 0.0,
+      "new_vs_old_fame_max_abs": 1.7763568394002505e-15,
+      "new_vs_old_gw_max_abs": 1.7763568394002505e-15,
+      "old_fame_score_abs_max": 18.979776445420622,
+      "relative_max_error": 9.359208442251404e-17
+    },
+    "EDM": {
+      "old_fame_vs_old_gw_max_abs": 0.0,
+      "new_vs_old_fame_max_abs": 4.440892098500626e-16,
+      "new_vs_old_gw_max_abs": 4.440892098500626e-16,
+      "old_fame_score_abs_max": 18.92594722281753,
+      "relative_max_error": 2.3464569811050677e-17
+    },
+    "PDR": {
+      "old_fame_vs_old_gw_max_abs": 0.0,
+      "new_vs_old_fame_max_abs": 1.7763568394002505e-15,
+      "new_vs_old_gw_max_abs": 1.7763568394002505e-15,
+      "old_fame_score_abs_max": 18.75400433638181,
+      "relative_max_error": 9.471880285077085e-17
+    },
+    "MBS": {
+      "old_fame_vs_old_gw_max_abs": 0.0,
+      "new_vs_old_fame_max_abs": 3.552713678800501e-15,
+      "new_vs_old_gw_max_abs": 3.552713678800501e-15,
+      "old_fame_score_abs_max": 32.772565780688474,
+      "relative_max_error": 1.0840511245213425e-16
+    }
+  },
+  "implementation_audit": {
+    "legacy_n_jobs": 4,
+    "legacy_backend": "threading",
+    "current_n_jobs": 8,
+    "current_backend": "loky",
+    "base_fold_seed": "42 + fold_id (1..10)",
+    "full_base_seed": 42,
+    "meta_seed": 42,
+    "fame_meta": "StandardScaler then SVC(kernel=linear, C=1, class_weight=balanced, probability=False)",
+    "cause_of_small_fame_margin_difference": "Not established; no additional training performed."
+  }
+}

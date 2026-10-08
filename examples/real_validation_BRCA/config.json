@@ -1,0 +1,24 @@
+{
+  "package_version": "0.1.0",
+  "dataset": "HRA003209",
+  "model": "both",
+  "evaluation": "test",
+  "tasks": [
+    "BRCA"
+  ],
+  "folds": 10,
+  "seed": 42,
+  "jobs": 8,
+  "versions": {
+    "numpy": "2.0.2",
+    "pandas": "2.3.1",
+    "scipy": "1.13.1",
+    "scikit-learn": "1.6.1",
+    "matplotlib": "3.9.4",
+    "joblib": "1.5.3",
+    "threadpoolctl": "3.6.0"
+  },
+  "python": "3.9.23 | packaged by conda-forge | (main, Jun  4 2025, 17:57:12) \n[GCC 13.3.0]",
+  "data_manifest_sha256": "16f5c7fdae60e953142d5264ca193664baf119d34569ef5029e2665eeed642d3",
+  "model_selection": "fixed, no test-set selection"
+}

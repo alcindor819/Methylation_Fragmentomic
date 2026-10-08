@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fame-cfdna"
+version = "0.1.0"
+description = "Reproducible FAME and FAME-GW binary classification from cfDNA features"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+dependencies = [
+  "numpy==2.0.2",
+  "pandas==2.3.1",
+  "scipy==1.13.1",
+  "scikit-learn==1.6.1",
+  "matplotlib==3.9.4",
+  "joblib==1.5.3",
+  "threadpoolctl==3.6.0",
+]
+
+[project.optional-dependencies]
+prepare = ["h5py==3.14.0", "openpyxl==3.1.5"]
+
+[project.scripts]
+fame = "fame.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fame = ["reference/*.tsv", "reference/*.json"]
